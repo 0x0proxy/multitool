@@ -102,3 +102,23 @@ dist
 
 # TernJS port file
 .tern-port
+
+# emacs editor temp files
+*~
+
+# secrets files and package lock json files
+secrets.json
+package-lock.json
+
+# nohup output
+nohup.out
+
+# testing records
+passFail.txt
+
+# contract deployment addresses
+*.address.txt
+# decluttering
+artifacts
+cache
+migrations
