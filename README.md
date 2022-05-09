@@ -7,7 +7,7 @@ Born on Sun May  8 18:00:00 PDT 2022, created by 0x0proxy.eth
 This is the proposed structure. Note that some of these folders may be empty:
 
  * [solidity](./solidity) &mdash; the home for solidity-related tools
- * [react](./react) &mdash; the home for react-related tools
+ * [react](./react) &mdash; the home for react-related tools (currently empty)
 
 ## overview
 
