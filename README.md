@@ -6,7 +6,6 @@ Born on Sun May  8 18:00:00 PDT 2022, created by 0x0proxy.eth
 ## repository structure
 This is the proposed structure. Note that some of these folders may be empty:
 
- * [docs](./docs) &mdash; the place for seperate tool documentation, if needed
  * [solidity](./solidity) &mdash; the home for solidity-related tools
  * [react](./react) &mdash; the home for react-related tools
 

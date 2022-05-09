@@ -7,7 +7,7 @@ Born on Sun May  8 18:00:00 PDT 2022, created by 0x0proxy.eth
 This is the proposed structure. Note that some of these folders may be empty:
 
  * [docs](./docs) &mdash; the place for seperate documentation, if needed
- * [node](./scripts) &mdash; scripts (Node.js, mostly) for supporting the development, testing, and deployment of Solidity code. To date, all of these scripts are hardhat-centric.
+ * [scripts](./scripts) &mdash; scripts (Node.js, mostly) for supporting the development, testing, and deployment of Solidity code. To date, all of these scripts are hardhat-centric.
  * [libraries](./libraries) &mdash; Solidity library code
  * [contracts](./contracts) &mdash; Solidity smart contracts
  
