@@ -415,3 +415,56 @@ exports.introspect = function(obj,console=false) {
     }
     return proplist;
 }
+
+// ******************************
+// string formatting functions
+
+// utility function for string formatting Eth
+exports.ethForm =  function(bal,units=false) {
+    const num = Number(bal);
+    const sym= units ? "Ξ" : "";
+    return sym + num.toLocaleString().split(".")[0] + "."
+        + num.toFixed(4).split(".")[1];
+}
+
+// function to use color to make wallet addresses visually distinct.
+// For HTML formatting assums you have CSS with appropriate color
+// assignments for the relevant classses, e.g. (for dark background):
+//
+// .addr-letter {
+//    color: yellow;
+// }
+//
+// .addr-number {
+//    color: lightgreen;
+// }
+
+exports.colorAddress= function (adr,html=false) {
+    const address = String(adr);
+    // If it doesn't look like an address, don't do anything to it
+    if (address.substr(0,2) != "0x") {
+	return adr;
+    }
+    // Otherwise, iterate through and build a colored representation
+    var rval = ""
+    for (var i=0; i < address.length; i++) {
+	var s = address[i];
+	if (isNaN(Number(s))) {
+	    if (html) {
+		rval +='<span class="addr-number">'+s+'</span>';
+	    }
+	    else {
+		rval += exports.amber(s);
+	    }
+	}
+	else {
+	    if (html) {
+		rval +='<span class="addr-letter">'+s+'</span>';
+	    }
+	    else {
+		rval += exports.green(s);
+	    }
+	}
+    }
+    return rval;
+}
