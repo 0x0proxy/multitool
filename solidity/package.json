@@ -1,0 +1,29 @@
+{
+  "name": "@0x0proxy/multi",
+  "version": "1.0.0",
+  "description": "light-weight hardhat/solidity testing and deployment support",
+  "main": "scripts/multi.js",
+  "directories": {
+      "doc": "docs",
+      "scripts": "scripts"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0x0proxy/multitool.git"
+  },
+  "keywords": [
+    "solidity",
+    "hardhat",
+    "test",
+    "deploy"
+  ],
+  "author": "0x0proxy.eth",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/0x0proxy/multitool/issues"
+  },
+  "homepage": "https://github.com/0x0proxy/multitool#readme"
+}
