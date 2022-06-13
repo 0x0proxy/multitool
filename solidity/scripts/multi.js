@@ -152,13 +152,13 @@ exports.readContractAddress= function(fname) {
 // functions for testing closeness of inexact numbers
 
 exports.smallEpsilon= 1.0e-6;
-exports.bigEpsilon = ethers.BigNumber.from('10').pow(15);
+exports.bigEpsilon = 10n**15n;
 
 // Test closeness of floating-point values. Return true if values are
 // within epsilon, by default exports.smallEpsilon
 
 exports.close = function(s1,s2,epsilon=exports.smallEpsilon) {
-    return Math.abs(s1 - s2) < epsilon;
+    return Math.abs(s1 - s2) <= epsilon;
 }
 
 // bigClose() is intended for testing closeness of big-number values
@@ -169,24 +169,28 @@ exports.close = function(s1,s2,epsilon=exports.smallEpsilon) {
 
 exports.bigClose = function(b1,b2,
 			    epsilon=exports.bigEpsilon) {
-    b1 = ethers.BigNumber.from(String(b1));
-    b2 = ethers.BigNumber.from(String(b2));
+    b1 = BigInt(String(b1));
+    b2 = BigInt(String(b2));
     if (debug) {
 	exports.bluelog("debug: b1: " + b1 +
 			", b2: " + b2 +
 			", epsilon: " + epsilon);
     }
 			
-    if (b1.gt(b2)) {
+    if (b1 > b2) {
 	if (debug) {
-	    exports.bluelog("debug: b1-b2: " + b1.sub(b2) );
+	    exports.bluelog("debug: b1-b2: " + b1 - b);
 	}
-	return (b1.sub(b2)).lt(epsilon);
+	//return (b1.sub(b2)).lt(epsilon);
+	return (b1 - b2) <= epsilon;
     }
     if (debug) {
-	exports.bluelog("debug: b2-b1: " + b2.sub(b1) );
+	//exports.bluelog("debug: b2-b1: " + b2.sub(b1) );
+	exports.bluelog("debug: b2-b1: " + b2 - b1 );
     }
-    return (b2.sub(b1)).lt(epsilon);
+    // return (b2.sub(b1)).lt(epsilon);
+    return (b2 - b1) <= epsilon;
+    //return (b2.sub(b1)).lt(epsilon);
 }
 
 // ***************************************************************
@@ -392,11 +396,9 @@ exports.timeoutPromise = function (interval) {
 // or similar 10^18 denominator fixpoint
 exports.toEth = function (val,
 			  precise = 10,
-			  denom =
-			  ethers.BigNumber.from('10').pow(18)) {
+			  denom = 10n ** 18n) {
     var v = parseFloat(val).toPrecision(precise) * (10**precise);
-    return ethers.BigNumber.from(Math.round(v)).mul(denom)
-	.div(ethers.BigNumber.from('10').pow(precise));
+    return BigInt(Math.round(v)) * denom / (10n ** BigInt(precise));
 }
 
 // do some object introspection -- often useful for debugging
