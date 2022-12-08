@@ -1,6 +1,6 @@
 {
   "name": "@0x0proxy/multi",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "light-weight hardhat/solidity testing and deployment support",
   "main": "scripts/multi.js",
   "directories": {
