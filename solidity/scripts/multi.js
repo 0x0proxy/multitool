@@ -41,8 +41,7 @@ const debug = false;
 // dependencies
 // ***************************
 
-// NOTE: we assume that ethers is already part of the environment, so
-// no explicit "require" for ethers here.
+const ethers = require('ethers');
 
 // FS is the only named external dependency
 const fs = require('fs');
@@ -114,6 +113,54 @@ exports.redlog = function(s) {
 exports.amberlog = function(s) {
     console.log(exports.amber(s));
 }
+
+// ***********************************************
+// support for reading and writing structured data
+// ***********************************************
+
+// synchronously read a json file, return the resulting object
+exports.readjson = function (fname) {
+    var jsonobj = undefined;
+    try {
+	const data = fs.readFileSync(fname, "utf8");
+	jsonobj = JSON.parse(data);
+    } catch (err) {
+	console.log("readjson: Error:", err);
+    }
+    return jsonobj;
+}
+
+// synchronously write a json file representation of an object
+exports.writejson = function (fname,thingout) {
+    const content = JSON.stringify(thingout) + "\n";
+    fs.writeFileSync(fname,content, { flag: 'w' }, err => {
+	if (err) {
+	    console.error(err);
+	    throw(err);
+	}
+    });
+}
+
+// synchronously write the contents of an array in a way that can be
+// CSV compatible
+exports.writesimple = function(fname,thingout) {
+    console.log('writesimple called with ' + fname);
+    var content = "";
+    for (var i=0; i <  thingout.length; i++) {
+	for (var j = 0; j < thingout[i].length; j++) {
+	    content = content + thingout[i][j] + " ";
+	}
+	content += "\n";
+    }
+    fs.writeFileSync(fname,content, { flag: 'w' }, err => {
+	if (err) {
+	    console.error(err);
+	    throw(err);
+	}
+    });
+}
+    
+
 
 // ******************************
 // contract deployment support
