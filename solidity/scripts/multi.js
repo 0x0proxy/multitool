@@ -41,7 +41,7 @@ const debug = false;
 // dependencies
 // ***************************
 
-const ethers = require('ethers');
+// const ethers = require('ethers');
 
 // FS is the only named external dependency
 const fs = require('fs');
